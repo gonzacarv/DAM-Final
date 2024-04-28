@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let grupo of grupos">
+    <h2>{{ grupo.nombre }}</h2>
+    <p>{{ grupo.descripcion }}</p>
+    <!-- Botón "Ver Detalles" -->
+    <button (click)="expandDetails(grupo)">Ver Detalles</button>
+    <!-- Detalles expandibles -->
+    <div *ngIf="grupo.expanded">
+      <!-- Mostrar detalles del consumo aquí -->
+    </div>
+  </li>
+</ul>
