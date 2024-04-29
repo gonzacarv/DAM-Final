@@ -1,5 +1,5 @@
 <ul style="overflow-y: scroll">
-  <li *ngFor="let consumo of consumos">
+  <li *ngFor="let consumo of consumos" [appCustomHighlight]="consumo.estado">
     <h2>{{ consumo.nombre }}</h2>
     <p>{{ consumo.descripcion }}</p>
     <!-- Ion-toggle para cambiar el estado -->

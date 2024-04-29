@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
+import { CustomHighlightDirective } from '../directives/custom.directive';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { HomePage } from './home.page';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, CustomHighlightDirective]
 })
 export class HomePageModule {}
