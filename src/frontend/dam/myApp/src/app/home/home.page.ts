@@ -69,6 +69,33 @@ export class HomePage implements OnInit {
       component: ScheduleModalComponent,
       componentProps: { deviceId: consumoId }
     });
+  
+    // Presenta el modal
     await modal.present();
+  
+   
+  const { data } = await modal.onDidDismiss();
+
+  if (data) {
+    console.log('Datos recibidos del modal:', data);  // Muestra los datos en la consola
+    this.submitSchedule(consumoId, data.inicio, data.fin);
+  } else {
+    console.log('No se recibieron datos del modal');
   }
+  }
+  
+  submitSchedule(consumoId: number, inicio: string, fin: string) {
+    const schedule = { start: inicio, end: fin }; // Construye el objeto schedule
+    console.log('Enviando al backend:', { consumoId, inicio, fin });  // Muestra los datos antes de enviar
+  
+    this.apiService.scheduleDevice(consumoId, schedule).subscribe({
+      next: response => {
+        console.log('Respuesta del backend:', response);
+      },
+      error: error => {
+        console.error('Error al enviar al backend:', error);
+      }
+    });
+  }
+  
 }

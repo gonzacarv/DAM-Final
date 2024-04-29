@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:8000'; 
+  private baseUrl = 'http://localhost:8000';  // URL base correcta para todas las llamadas API
 
   constructor(private http: HttpClient) {}
 
@@ -35,14 +35,24 @@ export class ApiService {
   }
 
   updateIntensidad(id: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/consumos/${id}/intensidad`, data);
+    return this.http.put(`${this.baseUrl}/consumos/${id}/intensidad`, data);
   }
   
-  scheduleDevice(deviceId: number, schedule: { start: string, end: string }) {
-    return this.http.post(`${this.baseUrl}/programacion_horaria`, { consumo_id: deviceId, inicio: schedule.start, fin: schedule.end });
-}
+  scheduleDevice(deviceId: number, schedule: { start: string, end: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/programacion_horaria`, {
+      consumo_id: deviceId,
+      inicio: schedule.start,
+      fin: schedule.end
+    });
+  }
+  
 
-  scheduleGroup(id: number, schedule: { start: string, end: string }) {
-    return this.http.post(`${this.baseUrl}/programacion_grupos/${id}`, schedule);
+  // Método adicional para programar un grupo, corregido para usar `http` y la URL base
+  scheduleGroup(consumoId: number, inicio: string, fin: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/programacion_horaria`, {
+      consumo_id: consumoId,
+      inicio: inicio,
+      fin: fin
+    });
   }
 }
