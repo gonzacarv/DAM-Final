@@ -26,7 +26,13 @@ const routes: Routes = [
     path: 'groups', 
     loadChildren: () => import('./groups/groups.module').then(m => m.GroupsPageModule),
     canActivate: [AuthGuard] // Asegura que solo usuarios autenticados puedan ver los grupos
-  }
+  },
+    {
+    path: 'details', 
+    loadChildren: () => import('./details/details.module').then(m => m.DetailsPageModule)
+  },
+  // Asegúrate de que la ruta de captura todo está al final
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

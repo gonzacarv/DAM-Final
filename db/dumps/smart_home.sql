@@ -127,6 +127,10 @@ INSERT INTO programacion_grupos (grupo_id, inicio, fin) VALUES
 (1, '06:00:00', '22:00:00'), (2, '07:00:00', '23:00:00'),
 (3, '09:00:00', '19:00:00');
 
-
 COMMIT;
+
+
+ALTER TABLE programacion_horaria
+ADD UNIQUE (consumo_id);
+
 

@@ -7,9 +7,9 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './schedule-modal.component.html',
   styleUrls: ['./schedule-modal.component.scss'],
 })
-export class ScheduleModalComponent implements OnInit {  // Implementa OnInit
-  startTime?: string;
-  endTime?: string;
+export class ScheduleModalComponent implements OnInit {  
+  startTime: string = '';
+  endTime: string = '';
   deviceId!: number;
 
   constructor(private modalCtrl: ModalController, private apiService: ApiService) {}
@@ -24,16 +24,25 @@ export class ScheduleModalComponent implements OnInit {  // Implementa OnInit
     this.modalCtrl.dismiss();
   }
 
-  schedule() {
-    if (this.startTime && this.endTime) {
-      this.apiService.scheduleDevice(this.deviceId, { start: this.startTime, end: this.endTime }).subscribe({
-        next: () => {
-          this.dismissModal();
-        },
-        error: (error) => {
-          console.error('Error al programar el dispositivo:', error);
-        }
+schedule() {
+  const startTimeFormatted = this.formatTime(this.startTime);
+  const endTimeFormatted = this.formatTime(this.endTime);
+
+  this.apiService.scheduleDevice(this.deviceId, { start: startTimeFormatted, end: endTimeFormatted })
+      .subscribe({
+          next: (response) => {
+              console.log('Programación exitosa', response);
+              this.dismissModal();
+          },
+          error: (error) => {
+              console.error('Error al programar el dispositivo:', error);
+          }
       });
-    }
-  }
+}
+
+formatTime(dateTime: string): string {
+  const time = new Date(dateTime);
+  return time.toTimeString().substring(0, 8); 
+}
+
 }

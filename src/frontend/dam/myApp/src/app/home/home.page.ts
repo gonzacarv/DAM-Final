@@ -45,8 +45,9 @@ export class HomePage implements OnInit {
   }
 
   navigateToDetails(id: number) {
-    this.router.navigate(['/details', id]); 
+    this.router.navigate(['/details', id]);
   }
+  
 
   changeIntensidad(id: number, intensidad: number) {
     this.apiService.updateIntensidad(id, { intensidad }).subscribe({

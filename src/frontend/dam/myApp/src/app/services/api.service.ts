@@ -38,9 +38,9 @@ export class ApiService {
     return this.http.put<any>(`${this.baseUrl}/consumos/${id}/intensidad`, data);
   }
   
-  scheduleDevice(id: number, schedule: { start: string, end: string }) {
-    return this.http.post(`${this.baseUrl}/programacion_horaria/${id}`, schedule);
-  }
+  scheduleDevice(deviceId: number, schedule: { start: string, end: string }) {
+    return this.http.post(`${this.baseUrl}/programacion_horaria`, { consumo_id: deviceId, inicio: schedule.start, fin: schedule.end });
+}
 
   scheduleGroup(id: number, schedule: { start: string, end: string }) {
     return this.http.post(`${this.baseUrl}/programacion_grupos/${id}`, schedule);

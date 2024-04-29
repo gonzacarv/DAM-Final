@@ -1,7 +1,6 @@
 <ul style="overflow-y: scroll">
   <li *ngFor="let consumo of consumos" [appCustomHighlight]="consumo.estado">
     <h2>{{ consumo.nombre }}</h2>
-    <p>{{ consumo.descripcion }}</p>
     <!-- Ion-toggle para cambiar el estado -->
     <ion-item>
       <ion-label>Estado</ion-label>
@@ -16,7 +15,7 @@
       </ion-range>
     </ion-item>
     <!-- Botón "Ver Detalles" -->
-    <button (click)="expandDetails(consumo)">Ver Detalles</button>
+    <ion-button (click)="navigateToDetails(consumo.id)">Ver Detalles</ion-button>
     <ion-button (click)="openScheduleModal(consumo.id)">Programar Horario</ion-button>
 
     <!-- Detalles expandibles -->

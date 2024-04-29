@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./groups.page.scss'],
 })
 export class GroupsPage implements OnInit {
-  grupos: any[] = [];
+  grupos: any[] = [];  // Considera definir una interfaz para los grupos
 
   constructor(private apiService: ApiService, private router: Router) { } 
 
@@ -18,44 +18,19 @@ export class GroupsPage implements OnInit {
 
   loadGrupos() {
     this.apiService.getGrupos().subscribe({
-      next: (data) => {
-        this.grupos = data;
+      next: (data: any[]) => {  // Cambiado a any[] para evitar confusiones hasta que definas una interfaz
+        this.grupos = data.map(grupo => ({
+          ...grupo,
+          expanded: false  // Asegura que expanded está inicializado
+        }));
       },
       error: (error) => {
-        console.error('Error al cargar consumos:', error);
+        console.error('Error al cargar grupos:', error);
       }
     });
   }
 
-  toggleConsumo(id: number, estado: boolean) {
-    const nuevoEstado = estado;
-    this.apiService.updateGrupo(id, { estado: nuevoEstado }).subscribe({
-      next: () => {
-        this.loadGrupos(); 
-      },
-      error: (error) => {
-        console.error('Error al actualizar consumo:', error);
-      }
-    });
+  expandDetails(grupo: any) {  // Cambiado de 'consumo' a 'grupo'
+    grupo.expanded = !grupo.expanded;
   }
-
-  navigateToDetails(id: number) {
-    this.router.navigate(['/details', id]); 
-  }
-
-  changeIntensidad(id: number, intensidad: number) {
-    this.apiService.updateIntensidad(id, { intensidad }).subscribe({
-      next: () => {
-        this.loadGrupos();
-      },
-      error: (error) => {
-        console.error('Error al actualizar intensidad:', error);
-      }
-    });
-  }
-  
-  expandDetails(consumo: any) {
-    consumo.expanded = !consumo.expanded;
-  }
-
 }
