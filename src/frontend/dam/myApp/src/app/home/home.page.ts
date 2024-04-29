@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service'; 
 import { Router } from '@angular/router'; 
+import { ModalController } from '@ionic/angular'; 
+//import { ScheduleModalComponent } from '../modals/schedule-modal/schedule-modal.component'; 
+//import { IonicModule } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-home',
@@ -10,7 +13,11 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   consumos: any[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) { } 
+  constructor(
+    private apiService: ApiService, 
+    private router: Router,
+    private modalController: ModalController
+  ) { } 
 
   ngOnInit() {
     this.loadConsumos();
@@ -28,8 +35,7 @@ export class HomePage implements OnInit {
   }
 
   toggleConsumo(id: number, estado: boolean) {
-    const nuevoEstado = estado;
-    this.apiService.updateConsumo(id, { estado: nuevoEstado }).subscribe({
+    this.apiService.updateConsumo(id, { estado }).subscribe({
       next: () => {
         this.loadConsumos(); 
       },
@@ -57,5 +63,17 @@ export class HomePage implements OnInit {
   expandDetails(consumo: any) {
     consumo.expanded = !consumo.expanded;
   }
-  
+  /*
+  async openScheduleModal(consumoId: number) {
+    const modal = await this.modalController.create({
+      component: ScheduleModalComponent,
+      componentProps: { deviceId: consumoId }
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      this.loadConsumos();
+    }
+  }*/
 }

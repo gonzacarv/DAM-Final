@@ -40,6 +40,7 @@ const routerConsumos = require('./routes/consumos');
 const routerGrupos = require('./routes/grupos');
 const routerGruposConsumos = require('./routes/grupos_consumos');
 const routerProgramacionHoraria = require('./routes/programacion_horaria');
+const routerProgramacionGrupos = require('./routes/programacion_grupos');
 
 // Middleware
 app.use(express.json());
@@ -53,6 +54,7 @@ app.use('/consumos', routerConsumos);
 app.use('/grupos', routerGrupos);
 app.use('/grupos_consumos', routerGruposConsumos);
 app.use('/programacion_horaria', routerProgramacionHoraria);
+app.use('/programacion_grupos', routerProgramacionGrupos);
 
 app.get('/', function(req, res) {
     res.send({'Estdo': 'OK!'}).status(200);

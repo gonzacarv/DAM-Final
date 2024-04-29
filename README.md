@@ -1,8 +1,6 @@
 # Desarrollo de Aplicaciones Multiplataforma
 Repositorio con el proyecto final de la materia DAM de la CEIoT de la FiUBA.
 
-**Alumno:** Gonzalo Carvallo (gonzacarv@gmail.com)
-
 ## Descripción del Proyecto
 Este proyecto es un sistema domótico desarrollado con Angular e Ionic que permite controlar dispositivos electrónicos del hogar. Permite a los usuarios visualizar, controlar y programar dispositivos tanto individualmente como en grupos.
 
@@ -29,4 +27,8 @@ Descripción breve de cómo se organiza el código en el proyecto:
 
 ## Configuración y Ejecución con Docker
 Se utiliza Docker para facilitar la configuración y ejecución del proyecto. Aquí está el `docker-compose.yml` utilizado para levantar los servicios necesarios.
+
+## Contacto
+**Docente:** Pedro Rosito - rositopedro@gmail.com
+**Alumno:** Gonzalo Carvallo - gonzacarv@gmail.com
 

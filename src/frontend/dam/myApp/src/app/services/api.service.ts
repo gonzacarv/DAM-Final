@@ -37,4 +37,12 @@ export class ApiService {
   updateIntensidad(id: number, data: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/consumos/${id}/intensidad`, data);
   }
+  
+  scheduleDevice(id: number, schedule: { start: string, end: string }) {
+    return this.http.post(`${this.baseUrl}/programacion_horaria/${id}`, schedule);
+  }
+
+  scheduleGroup(id: number, schedule: { start: string, end: string }) {
+    return this.http.post(`${this.baseUrl}/programacion_grupos/${id}`, schedule);
+  }
 }
