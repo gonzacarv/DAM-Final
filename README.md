@@ -28,6 +28,17 @@ Descripción breve de cómo se organiza el código en el proyecto:
 ## Configuración y Ejecución con Docker
 Se utiliza Docker para facilitar la configuración y ejecución del proyecto. Aquí está el `docker-compose.yml` utilizado para levantar los servicios necesarios.
 
+Inicia con 2 usuarios creados para login:
+
+**Username:** pedro
+**Password:** 1234
+
+ó
+
+**Username:** gonza
+**Password:** 1234
+
+
 ## Contacto
 **Docente:** Pedro Rosito - rositopedro@gmail.com
 **Alumno:** Gonzalo Carvallo - gonzacarv@gmail.com
