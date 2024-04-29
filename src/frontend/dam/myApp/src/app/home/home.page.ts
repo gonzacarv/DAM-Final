@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service'; 
 import { Router } from '@angular/router'; 
 import { ModalController } from '@ionic/angular'; 
-//import { ScheduleModalComponent } from '../modals/schedule-modal/schedule-modal.component'; 
-//import { IonicModule } from '@ionic/angular'; 
+import { ScheduleModalComponent } from '../modals/schedule-modal/schedule-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ export class HomePage implements OnInit {
     private apiService: ApiService, 
     private router: Router,
     private modalController: ModalController
-  ) { } 
+  ) { }
 
   ngOnInit() {
     this.loadConsumos();
@@ -59,21 +58,16 @@ export class HomePage implements OnInit {
       }
     });
   }
-  
+
   expandDetails(consumo: any) {
     consumo.expanded = !consumo.expanded;
   }
-  /*
+  
   async openScheduleModal(consumoId: number) {
     const modal = await this.modalController.create({
       component: ScheduleModalComponent,
       componentProps: { deviceId: consumoId }
     });
     await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      this.loadConsumos();
-    }
-  }*/
+  }
 }

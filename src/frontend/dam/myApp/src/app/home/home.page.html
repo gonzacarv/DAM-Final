@@ -17,7 +17,8 @@
     </ion-item>
     <!-- Botón "Ver Detalles" -->
     <button (click)="expandDetails(consumo)">Ver Detalles</button>
-   <!--  <ion-button (click)="openScheduleModal(consumo.id)">Programar Horario</ion-button>-->
+    <ion-button (click)="openScheduleModal(consumo.id)">Programar Horario</ion-button>
+
     <!-- Detalles expandibles -->
     <div *ngIf="consumo.expanded">
       <!-- Mostrar detalles del consumo aquí -->
